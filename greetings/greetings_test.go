@@ -11,6 +11,13 @@ func TestHelloName(t *testing.T) {
 	msg, e := Hello(name)
 
 	if !want.MatchString(msg) || e != nil {
-		t.Fatal(`Hello("Freya Lindberg") = %q %v, want match for %#q, nil`, msg, e, want)
+		t.Fatalf(`Hello("Freya Lindberg") = %q %v, want match for %#q, nil`, msg, e, want)
+	}
+}
+
+func TestHelloEmpty(t *testing.T) {
+	msg, err := Hello("")
+	if msg != "" || err == nil {
+		t.Fatalf(`Hello("") = %q, %v, want "", error`, msg, err)
 	}
 }
